@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join Early Access — ThriveOS</title>
+  <meta name="description" content="Apply for early access to ThriveOS — the Personal Operating System for Human Thriving. Be among the first to shape the platform." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+</head>
+<body class="signup-page">
+
+<!-- ─── Navigation ─── -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.svg" class="logo-icon" width="32" height="32" alt="ThriveOS" />
+        ThriveOS
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#solution">Product</a></li>
+        <li><a href="index.html#modules">Ecosystem</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="signup.html" class="btn btn-primary" style="padding:8px 18px;font-size:.88rem;">Early Access</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="index.html#solution">Product</a>
+    <a href="index.html#modules">Ecosystem</a>
+    <a href="about.html">About</a>
+  </div>
+</nav>
+
+<!-- ─── Main Content ─── -->
+<main class="signup-main">
+  <div class="container">
+    <div class="signup-inner">
+
+      <!-- Left: Value Props -->
+      <div class="signup-left">
+        <div class="section-label">Early Access</div>
+        <h1>Join ThriveOS<br/><span style="background:linear-gradient(135deg,var(--blue-600),var(--violet-600));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Early Access</span></h1>
+        <p>Be among the first to experience the Personal Operating System for Human Thriving. Help us shape the future of how people organize their lives, learn, and grow.</p>
+        <ul class="benefits">
+          <li><span class="check">✓</span>Priority access to the ThriveOS platform when it launches</li>
+          <li><span class="check">✓</span>Input on product direction and new features</li>
+          <li><span class="check">✓</span>Access to BizBox beta for creators and founders</li>
+          <li><span class="check">✓</span>Founding member pricing and recognition</li>
+          <li><span class="check">✓</span>Direct access to the founding team</li>
+          <li><span class="check">✓</span>Early access to ThriveKids and ThriveTeen when ready</li>
+        </ul>
+        <div style="margin-top:36px;padding:20px 24px;background:var(--white);border:1px solid var(--slate-200);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);">
+          <div style="font-size:.8rem;font-weight:600;color:var(--slate-500);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">Who We're Looking For</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--slate-700);">
+              <span>🚀</span> Founders and entrepreneurs
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--slate-700);">
+              <span>🎨</span> Creators, coaches, and consultants
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--slate-700);">
+              <span>👨‍👩‍👧</span> Parents and families
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--slate-700);">
+              <span>📚</span> Lifelong learners and educators
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--slate-700);">
+              <span>🌱</span> Personal growth enthusiasts
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="signup-card">
+
+        <!-- Form State -->
+        <div id="formState">
+          <h2>Apply for Early Access</h2>
+          <p class="sub">Tell us a little about yourself. We're reviewing applications on a rolling basis.</p>
+
+          <form id="signupForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" placeholder="Jane" required />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Smith" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="role">What best describes you? *</label>
+              <select id="role" name="role" required>
+                <option value="" disabled selected>Select your role...</option>
+                <option>Founder / Entrepreneur</option>
+                <option>Creator / Influencer</option>
+                <option>Freelancer / Consultant</option>
+                <option>Parent / Family</option>
+                <option>Student / Educator</option>
+                <option>Corporate Professional</option>
+                <option>Investor / Advisor</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="interest">Which ThriveOS product interests you most?</label>
+              <select id="interest" name="interest">
+                <option value="" disabled selected>Select a product...</option>
+                <option>Life Dashboard (personal organization)</option>
+                <option>BizBox (creator & founder tools)</option>
+                <option>ThriveKids (youth life skills)</option>
+                <option>ThriveTeen (career exploration)</option>
+                <option>All of the above</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">What problem are you trying to solve? (optional)</label>
+              <textarea id="message" name="message" placeholder="Tell us what's fragmented in your life right now, or how you imagine ThriveOS helping you..."></textarea>
+            </div>
+
+            <div class="form-group" style="margin-bottom:4px;">
+              <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-weight:400;font-size:.88rem;color:var(--slate-600);">
+                <input type="checkbox" id="consent" name="consent" style="width:auto;margin-top:2px;accent-color:var(--blue-600);" required />
+                I agree to receive updates from ThriveOS and understand I can unsubscribe at any time.
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit" id="submitBtn">
+              Apply for Early Access →
+            </button>
+            <p class="form-note">No spam, ever. We respect your privacy.</p>
+          </form>
+        </div>
+
+        <!-- Success State -->
+        <div class="success-state" id="successState">
+          <div class="s-icon-wrap">🎉</div>
+          <h3>You're on the list!</h3>
+          <p>Thank you for applying. We'll be in touch as we open up early access — you'll be among the first to know.</p>
+          <p style="margin-top:8px;">In the meantime, follow along as we build.</p>
+          <div style="margin-top:24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+            <a href="index.html" class="btn btn-secondary" style="font-size:.9rem;">Back to Home</a>
+            <a href="about.html" class="btn btn-primary" style="font-size:.9rem;">Learn About Us</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ─── Trust Bar ─── -->
+<div style="background:var(--white);border-top:1px solid var(--slate-100);padding:24px 0;margin-top:0;">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--slate-500);">
+        <span>🔒</span> Your data is secure
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--slate-500);">
+        <span>📧</span> No spam, unsubscribe anytime
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--slate-500);">
+        <span>⚡</span> Rolling admissions
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--slate-500);">
+        <span>🌱</span> Early stage · Building in public
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Footer ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <img src="logo.svg" class="logo-icon" width="28" height="28" alt="ThriveOS" />
+          ThriveOS
+        </a>
+        <p>The Personal Operating System for Human Thriving. An AI-powered platform for individuals, creators, families, and founders.</p>
+        <div class="footer-status">
+          <span class="dot"></span>
+          Early Stage Startup · Prototype Phase
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Ecosystem</h4>
+        <a href="index.html#modules">BizBox</a>
+        <a href="index.html#modules">ThriveKids</a>
+        <a href="index.html#modules">ThriveTeen</a>
+        <a href="index.html#modules">Life Dashboard</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="index.html#mission">Mission</a>
+        <a href="index.html#technology">Technology</a>
+        <a href="signup.html">Early Access</a>
+      </div>
+      <div class="footer-email">
+        <h4>Stay Updated</h4>
+        <p>Get updates on our launch and early access openings.</p>
+        <form class="email-form" id="footerForm">
+          <input type="email" class="email-input" placeholder="your@email.com" required />
+          <button type="submit" class="email-submit">Notify Me</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2025 ThriveOS. All rights reserved.</div>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="mailto:hello@thriveos.io">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThriveOS — The Personal Operating System for Human Thriving</title>
+  <meta name="description" content="ThriveOS is an AI-powered platform that brings together your goals, projects, learning, and life systems in one intelligent environment. Join early access." />
+  <meta property="og:title" content="ThriveOS — Personal Operating System for Human Thriving" />
+  <meta property="og:description" content="An AI-powered platform for individuals, creators, families, and founders to organize their lives in one intelligent environment." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+</head>
+<body>
+
+<!-- ─── Navigation ─── -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.svg" class="logo-icon" width="32" height="32" alt="ThriveOS" />
+        ThriveOS
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="#solution">Product</a></li>
+        <li><a href="#modules">Ecosystem</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="signup.html" class="btn btn-secondary" style="padding:8px 18px;font-size:.88rem;">Early Access</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="#solution">Product</a>
+    <a href="#modules">Ecosystem</a>
+    <a href="about.html">About</a>
+    <a href="signup.html" class="btn btn-primary">Join Early Access</a>
+  </div>
+</nav>
+
+<!-- ─── Hero ─── -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span class="dot"></span>
+          Now accepting early access applications
+        </div>
+        <h1>The Personal <span>Operating System</span> for Human Thriving</h1>
+        <p class="hero-desc">
+          An AI-powered platform designed to help individuals, creators, families, and founders organize their goals, projects, learning, and life systems in one intelligent environment.
+        </p>
+        <div class="hero-actions">
+          <a href="signup.html" class="btn btn-primary">Join Early Access →</a>
+          <a href="#solution" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <div class="avatar">JD</div>
+            <div>
+              <div class="hero-card-title">Life Dashboard</div>
+              <div class="hero-card-sub">ThriveOS · Synced 2 min ago</div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Q2 Business Goals</span><span>72%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:72%"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Learning Track: AI & ML</span><span>48%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:48%"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Content Pipeline</span><span>85%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Family Projects</span><span>30%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:30%"></div></div>
+          </div>
+          <div class="hero-tags">
+            <span class="tag blue">AI Assistant</span>
+            <span class="tag">BizBox</span>
+            <span class="tag">ThriveKids</span>
+            <span class="tag">Goals</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Social Proof Bar ─── -->
+<div style="background:var(--slate-50);border-top:1px solid var(--slate-200);border-bottom:1px solid var(--slate-200);padding:20px 0;">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;">
+      <span style="font-size:.82rem;font-weight:600;color:var(--slate-400);letter-spacing:.08em;text-transform:uppercase;">Designed for</span>
+      <span style="font-size:.9rem;color:var(--slate-600);font-weight:500;">🚀 Founders & Entrepreneurs</span>
+      <span style="font-size:.9rem;color:var(--slate-600);font-weight:500;">🎨 Creators & Makers</span>
+      <span style="font-size:.9rem;color:var(--slate-600);font-weight:500;">👨‍👩‍👧 Families</span>
+      <span style="font-size:.9rem;color:var(--slate-600);font-weight:500;">📚 Lifelong Learners</span>
+      <span style="font-size:.9rem;color:var(--slate-600);font-weight:500;">🌱 Personal Growth Seekers</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Problem ─── -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="problem-grid">
+      <div>
+        <div class="section-label">The Problem</div>
+        <h2>Modern life is fragmented</h2>
+        <p style="margin-top:16px;font-size:1.05rem;color:var(--slate-500);margin-bottom:32px;">
+          People rely on dozens of disconnected apps to manage their lives — calendars, note apps, goal trackers, AI assistants, and project tools. The fragmentation is real and costly.
+        </p>
+        <ul class="problem-list">
+          <li><span class="icon">🧠</span>Cognitive overload from constant context-switching</li>
+          <li><span class="icon">💡</span>Lost ideas and half-finished plans that go nowhere</li>
+          <li><span class="icon">📚</span>Scattered learning that never compounds into expertise</li>
+          <li><span class="icon">🎯</span>Difficulty following through and executing on goals</li>
+        </ul>
+        <p style="margin-top:24px;font-size:.95rem;color:var(--slate-600);">
+          There is currently no unified platform designed to help individuals organize their life systems, creativity, learning, and work in one place.
+        </p>
+      </div>
+      <div>
+        <div style="margin-bottom:12px;font-size:.8rem;font-weight:600;color:var(--slate-500);text-transform:uppercase;letter-spacing:.08em;">The average person juggles</div>
+        <div class="app-chaos">
+          <div class="app-chip"><span class="chip-icon">📅</span>Calendar</div>
+          <div class="app-chip"><span class="chip-icon">📝</span>Notes</div>
+          <div class="app-chip"><span class="chip-icon">✅</span>To-dos</div>
+          <div class="app-chip"><span class="chip-icon">🎯</span>Goals</div>
+          <div class="app-chip"><span class="chip-icon">🤖</span>AI Chat</div>
+          <div class="app-chip"><span class="chip-icon">📊</span>Projects</div>
+          <div class="app-chip"><span class="chip-icon">📖</span>Learning</div>
+          <div class="app-chip"><span class="chip-icon">💬</span>Comms</div>
+          <div class="app-chip"><span class="chip-icon">💰</span>Finance</div>
+        </div>
+        <div style="margin-top:20px;padding:16px 20px;background:var(--white);border:1px solid #FED7AA;border-radius:var(--radius-md);border-left:3px solid #F97316;">
+          <div style="font-size:.85rem;font-weight:600;color:#C2410C;margin-bottom:4px;">The result?</div>
+          <div style="font-size:.9rem;color:var(--slate-600);">More time managing tools than actually living, creating, and growing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Solution ─── -->
+<section class="solution" id="solution">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">The Solution</div>
+      <h2>A Personal Operating System</h2>
+      <p>ThriveOS brings together multiple life systems into one intelligent platform powered by AI — designed to act like an operating system for personal growth, creativity, and productivity.</p>
+    </div>
+    <div class="capabilities">
+      <div class="cap-card">
+        <div class="cap-icon">🤖</div>
+        <h4>AI-Assisted Planning</h4>
+        <p>Intelligent thinking tools that help you plan, reflect, and make better decisions with context-aware AI assistance.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">📋</div>
+        <h4>Project & Idea Management</h4>
+        <p>Capture, organize, and execute your ideas and projects in a flexible system that grows with you.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">🎯</div>
+        <h4>Life Goal Tracking</h4>
+        <p>Visual dashboards that connect your daily actions to long-term goals across every area of your life.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">🧠</div>
+        <h4>Personal Knowledge System</h4>
+        <p>Build a second brain that organizes everything you learn, think, and create in one searchable place.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">🚀</div>
+        <h4>Creator & Founder Tools</h4>
+        <p>Workflows built specifically for creators, consultants, and founders who need to move fast and stay organized.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon">👥</div>
+        <h4>Collaborative Coordination</h4>
+        <p>Tools that bring families, teams, and communities together around shared goals and projects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Modules ─── -->
+<section class="modules" id="modules">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Product Ecosystem</div>
+      <h2>The ThriveOS Ecosystem</h2>
+      <p>A modular platform designed to meet people where they are — from childhood through entrepreneurship and lifelong learning.</p>
+    </div>
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-icon" style="background:#EFF6FF;">💼</div>
+        <h3>BizBox</h3>
+        <p>An AI business operating system for creators, founders, and consultants. Manage ideas, projects, content, and growth workflows in one unified dashboard. Built for the way modern businesses actually operate.</p>
+        <span class="module-tag">For Founders & Creators</span>
+      </div>
+      <div class="module-card">
+        <div class="module-icon" style="background:#F0FDF4;">🌱</div>
+        <h3>ThriveKids</h3>
+        <p>A youth-focused platform designed to teach life skills, creativity, emotional intelligence, and entrepreneurial thinking. Helping the next generation develop the mindset and habits for a thriving life.</p>
+        <span class="module-tag">Ages 6–12</span>
+      </div>
+      <div class="module-card">
+        <div class="module-icon" style="background:#FDF4FF;">⚡</div>
+        <h3>ThriveTeen</h3>
+        <p>A mentorship and career exploration platform helping young people discover paths in technology, business, and creative industries. Real skills, real mentors, real opportunities for the leaders of tomorrow.</p>
+        <span class="module-tag">Ages 13–19</span>
+      </div>
+      <div class="module-card">
+        <div class="module-icon" style="background:#FFF7ED;">🗂️</div>
+        <h3>Life Dashboard</h3>
+        <p>A fully customizable personal hub where you organize goals, projects, ideas, learning systems, and life priorities. Your entire life in one clear, intelligent view — designed to evolve with you.</p>
+        <span class="module-tag">For Everyone</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Mission ─── -->
+<section class="mission" id="mission">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Our Mission</div>
+      <h2>Helping Humanity Thrive</h2>
+      <p>ThriveOS is designed around a simple mission: helping people live more intentional, creative, and meaningful lives. We believe technology should empower people — not distract them.</p>
+    </div>
+    <div class="mission-grid">
+      <div class="mission-pillar">
+        <div class="icon">🌱</div>
+        <h3>Personal Growth</h3>
+        <p>Tools that support continuous learning, self-awareness, and intentional development at every stage of life.</p>
+      </div>
+      <div class="mission-pillar">
+        <div class="icon">🎓</div>
+        <h3>Education</h3>
+        <p>Making world-class learning accessible and integrated into daily life — from childhood through adulthood.</p>
+      </div>
+      <div class="mission-pillar">
+        <div class="icon">🚀</div>
+        <h3>Entrepreneurship</h3>
+        <p>Empowering founders, creators, and change-makers with the systems they need to build and grow.</p>
+      </div>
+      <div class="mission-pillar">
+        <div class="icon">👨‍👩‍👧</div>
+        <h3>Family Coordination</h3>
+        <p>Bringing families together around shared goals, values, and the things that matter most.</p>
+      </div>
+      <div class="mission-pillar">
+        <div class="icon">🌍</div>
+        <h3>Global Access</h3>
+        <p>Building for global scale — ensuring knowledge, opportunity, and tools reach people everywhere.</p>
+      </div>
+      <div class="mission-pillar">
+        <div class="icon">✨</div>
+        <h3>Intentional Living</h3>
+        <p>Creating technology that helps people align their time, energy, and attention with what truly matters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Technology ─── -->
+<section class="technology" id="technology">
+  <div class="container">
+    <div class="tech-grid">
+      <div>
+        <div class="section-label">Technology</div>
+        <h2>Built for the AI Era</h2>
+        <p style="margin-top:16px;color:var(--slate-500);font-size:1.05rem;margin-bottom:32px;">
+          ThriveOS uses modern cloud infrastructure and AI models to power intelligent tools for planning, organization, and decision-making. Designed to scale globally from day one.
+        </p>
+        <ul class="tech-list">
+          <li>AI-driven assistants and thinking tools</li>
+          <li>Cloud-native scalable infrastructure</li>
+          <li>Modular platform architecture</li>
+          <li>Mobile and desktop access</li>
+          <li>Real-time collaboration capabilities</li>
+          <li>Future-ready AI model integrations</li>
+          <li>Enterprise-grade data security</li>
+        </ul>
+      </div>
+      <div class="tech-visual">
+        <div style="margin-bottom:20px;">
+          <div style="font-size:.8rem;font-weight:600;color:var(--slate-500);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;">Infrastructure Stack</div>
+          <div class="tech-stack">
+            <div class="stack-item">
+              <div class="s-icon">☁️</div>
+              <div class="s-label">Cloud</div>
+              <div class="s-sub">AWS Powered</div>
+            </div>
+            <div class="stack-item">
+              <div class="s-icon">🤖</div>
+              <div class="s-label">AI Models</div>
+              <div class="s-sub">LLM Integrated</div>
+            </div>
+            <div class="stack-item">
+              <div class="s-icon">🔒</div>
+              <div class="s-label">Security</div>
+              <div class="s-sub">Enterprise Grade</div>
+            </div>
+            <div class="stack-item">
+              <div class="s-icon">📱</div>
+              <div class="s-label">Cross-Platform</div>
+              <div class="s-sub">Web + Mobile</div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:16px;background:var(--white);border:1px solid var(--blue-100);border-radius:var(--radius-sm);margin-top:8px;">
+          <div style="font-size:.8rem;font-weight:600;color:var(--blue-600);margin-bottom:4px;">Cloud Infrastructure</div>
+          <div style="font-size:.85rem;color:var(--slate-600);">ThriveOS relies on scalable cloud computing — including AWS — to power AI processing, data storage, and global user growth.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Vision ─── -->
+<section class="vision" id="vision">
+  <div class="container">
+    <div class="vision-inner">
+      <div>
+        <div class="section-label">Future Vision</div>
+        <h2>A Platform for Human Potential</h2>
+        <p style="margin-top:16px;color:var(--slate-600);font-size:1.05rem;">
+          Over time, ThriveOS aims to evolve into a global platform supporting individuals at every stage of life — from childhood education to entrepreneurship and lifelong learning.
+        </p>
+        <p style="margin-top:12px;color:var(--slate-600);font-size:1.05rem;">
+          By combining AI with human creativity and purpose, we seek to create technology that empowers people rather than distracting them.
+        </p>
+      </div>
+      <div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h4>Now — Early Access</h4>
+            <p>Core platform foundations: Life Dashboard, BizBox beta, and AI assistant tools for early adopters and founding community members.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Phase 2 — Platform Expansion</h4>
+            <p>ThriveKids and ThriveTeen launch. Mobile apps. Team collaboration and family coordination features go live.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Phase 3 — AI Ecosystem</h4>
+            <p>Advanced AI agents, personalized learning paths, integrations with major productivity tools and APIs.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>Long-term — Global Scale</h4>
+            <p>Multilingual support, global community features, partnerships with educational institutions, and enterprise offerings.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Be Part of Something Meaningful</h2>
+    <p>Join early access and help shape the future of personal operating systems. We're building ThriveOS for people who want to live and work with more intention.</p>
+    <div class="cta-actions">
+      <a href="signup.html" class="btn btn-primary">Join Early Access →</a>
+      <a href="about.html" class="btn btn-secondary">Learn About Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Footer ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <img src="logo.svg" class="logo-icon" width="28" height="28" alt="ThriveOS" />
+          ThriveOS
+        </a>
+        <p>The Personal Operating System for Human Thriving. An AI-powered platform for individuals, creators, families, and founders.</p>
+        <div class="footer-status">
+          <span class="dot"></span>
+          Early Stage Startup · Prototype Phase
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Ecosystem</h4>
+        <a href="#modules">BizBox</a>
+        <a href="#modules">ThriveKids</a>
+        <a href="#modules">ThriveTeen</a>
+        <a href="#modules">Life Dashboard</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About</a>
+        <a href="#mission">Mission</a>
+        <a href="#technology">Technology</a>
+        <a href="signup.html">Early Access</a>
+      </div>
+      <div class="footer-email">
+        <h4>Stay Updated</h4>
+        <p>Get updates on our launch and early access openings.</p>
+        <form class="email-form" id="footerForm">
+          <input type="email" class="email-input" placeholder="your@email.com" required />
+          <button type="submit" class="email-submit">Notify Me</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2025 ThriveOS. All rights reserved.</div>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="mailto:hello@thriveos.io">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
