@@ -711,3 +711,11 @@ footer {
   .cta-actions { flex-direction: column; align-items: center; }
   .cta-actions .btn { width: 100%; justify-content: center; max-width: 280px; }
 }
+
+.hero-tagline {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--indigo-600, #4f46e5);
+  margin-top: 12px;
+  letter-spacing: 0.01em;
+}
