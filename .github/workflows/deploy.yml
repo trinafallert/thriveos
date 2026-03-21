@@ -36,7 +36,8 @@ jobs:
           curl -s -X POST https://api.cloudflare.com/client/v4/accounts/${{ steps.cf_account.outputs.account_id }}/pages/projects \
             -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
             -H "Content-Type: application/json" \
-            -d '{"name":"thriveos","production_branch":"main"}' | python3 -c "
+            -d '{"name":"thriveos-bizbox-lifebud","production_branch":"main"}' | python3 -c "
+
           import sys, json
           d = json.load(sys.stdin)
           if d.get('success') or 'already exists' in str(d.get('errors','')):
@@ -50,4 +51,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ steps.cf_account.outputs.account_id }}
-          command: pages deploy out --project-name=thriveos --branch=main
+          command: pages deploy out --project-name=thriveos-bizbox-lifebud --branch=main
