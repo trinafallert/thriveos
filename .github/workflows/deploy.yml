@@ -22,8 +22,32 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Get Cloudflare Account ID
+        id: cf_account
+        run: |
+          ACCOUNT_ID=$(curl -s https://api.cloudflare.com/client/v4/accounts \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['result'][0]['id'])")
+          echo "account_id=$ACCOUNT_ID" >> $GITHUB_OUTPUT
+          echo "Account ID retrieved successfully"
+
+      - name: Create Cloudflare Pages project (if needed)
+        run: |
+          curl -s -X POST https://api.cloudflare.com/client/v4/accounts/${{ steps.cf_account.outputs.account_id }}/pages/projects \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"name":"thriveos","production_branch":"main"}' | python3 -c "
+          import sys, json
+          d = json.load(sys.stdin)
+          if d.get('success') or 'already exists' in str(d.get('errors','')):
+              print('Project ready')
+          else:
+              print('Note:', d.get('errors', d.get('messages', 'unknown')))
+          "
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ steps.cf_account.outputs.account_id }}
           command: pages deploy out --project-name=thriveos --branch=main
