@@ -130,7 +130,7 @@ export default function OnboardingPage() {
   }
 
   // ─── STEP 0: Welcome + Name ───────────────────────────────────────────────
-  const Step0 = () => (
+  const step0 = (
     <div className="space-y-6 animate-fade-in">
       <div className="text-center space-y-3">
         <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-thrive-purple to-thrive-blue flex items-center justify-center shadow-thrive">
@@ -162,7 +162,7 @@ export default function OnboardingPage() {
   )
 
   // ─── STEP 1: Vision ───────────────────────────────────────────────────────
-  const Step1 = () => (
+  const step1 = (
     <div className="space-y-6 animate-fade-in">
       <div className="space-y-2">
         <span className="text-xs font-semibold text-thrive-purple uppercase tracking-widest">Step 1 — Vision</span>
@@ -219,7 +219,7 @@ export default function OnboardingPage() {
   )
 
   // ─── STEP 2: Current Reality ──────────────────────────────────────────────
-  const Step2 = () => (
+  const step2 = (
     <div className="space-y-6 animate-fade-in">
       <div className="space-y-2">
         <span className="text-xs font-semibold text-thrive-purple uppercase tracking-widest">Step 2 — Current Reality</span>
@@ -294,7 +294,7 @@ export default function OnboardingPage() {
   )
 
   // ─── STEP 3: Goals ────────────────────────────────────────────────────────
-  const Step3 = () => (
+  const step3 = (
     <div className="space-y-6 animate-fade-in">
       <div className="space-y-2">
         <span className="text-xs font-semibold text-thrive-purple uppercase tracking-widest">Step 3 — Goals</span>
@@ -361,7 +361,7 @@ export default function OnboardingPage() {
   )
 
   // ─── STEP 4: Work Style ───────────────────────────────────────────────────
-  const Step4 = () => (
+  const step4 = (
     <div className="space-y-6 animate-fade-in">
       <div className="space-y-2">
         <span className="text-xs font-semibold text-thrive-purple uppercase tracking-widest">Step 4 — Work Style</span>
@@ -448,7 +448,7 @@ export default function OnboardingPage() {
   )
 
   // ─── STEP 5: AI Personality ───────────────────────────────────────────────
-  const Step5 = () => (
+  const step5 = (
     <div className="space-y-6 animate-fade-in">
       <div className="space-y-2">
         <span className="text-xs font-semibold text-thrive-purple uppercase tracking-widest">Step 5 — Your AI</span>
@@ -515,7 +515,7 @@ export default function OnboardingPage() {
   )
 
   // ─── STEP 6: Connect ──────────────────────────────────────────────────────
-  const Step6 = () => (
+  const step6 = (
     <div className="space-y-6 animate-fade-in">
       <div className="space-y-2">
         <span className="text-xs font-semibold text-thrive-purple uppercase tracking-widest">Step 6 — Connect (Optional)</span>
@@ -556,7 +556,7 @@ export default function OnboardingPage() {
   )
 
   // ─── STEP 7: Loading / Reward ─────────────────────────────────────────────
-  const Step7 = () => (
+  const step7 = (
     <div className="space-y-8 animate-fade-in text-center">
       {!loadingDone ? (
         <>
@@ -627,14 +627,14 @@ export default function OnboardingPage() {
   )
 
   const steps = [
-    { component: <Step0 />, label: 'Welcome', canSkip: false, isLast: false },
-    { component: <Step1 />, label: 'Vision', canSkip: true, isLast: false },
-    { component: <Step2 />, label: 'Reality', canSkip: true, isLast: false },
-    { component: <Step3 />, label: 'Goals', canSkip: true, isLast: false },
-    { component: <Step4 />, label: 'Work Style', canSkip: true, isLast: false },
-    { component: <Step5 />, label: 'AI', canSkip: true, isLast: false },
-    { component: <Step6 />, label: 'Connect', canSkip: true, isLast: false },
-    { component: <Step7 />, label: 'Loading', canSkip: false, isLast: true },
+    { component: step0, label: 'Welcome', canSkip: false, isLast: false },
+    { component: step1, label: 'Vision', canSkip: true, isLast: false },
+    { component: step2, label: 'Reality', canSkip: true, isLast: false },
+    { component: step3, label: 'Goals', canSkip: true, isLast: false },
+    { component: step4, label: 'Work Style', canSkip: true, isLast: false },
+    { component: step5, label: 'AI', canSkip: true, isLast: false },
+    { component: step6, label: 'Connect', canSkip: true, isLast: false },
+    { component: step7, label: 'Loading', canSkip: false, isLast: true },
   ]
 
   const currentStep = steps[step]
