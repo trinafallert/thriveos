@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { UserProvider } from '@/lib/user-context'
 import { BusinessesProvider } from '@/lib/businesses-context'
+import { AuthProvider } from '@/lib/auth-context'
 
 export const metadata: Metadata = {
   title: 'ThriveOS — Your All-in-One Life & Business Platform',
@@ -26,9 +27,11 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-white font-sans antialiased">
         <UserProvider>
-          <BusinessesProvider>
-            {children}
-          </BusinessesProvider>
+          <AuthProvider>
+            <BusinessesProvider>
+              {children}
+            </BusinessesProvider>
+          </AuthProvider>
         </UserProvider>
       </body>
     </html>

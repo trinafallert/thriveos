@@ -2,7 +2,9 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { ProfilePanel } from '@/components/layout/profile-panel'
+import { useAuth } from '@/lib/auth-context'
 import { cn } from '@/lib/utils'
 import { useUser } from '@/lib/user-context'
 import { useBusinesses, BUSINESS_GRADIENTS } from '@/lib/businesses-context'
@@ -45,10 +47,15 @@ export function Sidebar() {
   const isBizboxActive = pathname.startsWith('/dashboard/bizbox')
   const isLifebudActive = pathname.startsWith('/dashboard/lifebud')
 
+  const { user: authUser } = useAuth()
   const [bizboxOpen, setBizboxOpen] = useState(isBizboxActive)
   const [lifebudOpen, setLifebudOpen] = useState(isLifebudActive)
+  const [profileOpen, setProfileOpen] = useState(false)
 
   const sortedBusinesses = [...businesses].sort((a, b) => a.order - b.order)
+
+  const displayName = authUser?.user_metadata?.name || user.name || 'User'
+  const isSignedIn = Boolean(authUser)
 
   const initials = user.name
     ? user.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
@@ -229,19 +236,26 @@ export function Sidebar() {
 
       {/* User Profile */}
       <div className="p-4 border-t border-gray-100">
-        <div className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer transition-colors">
-          <Avatar className="w-8 h-8">
-            <AvatarFallback className="text-xs bg-gradient-to-br from-thrive-purple to-thrive-blue text-white">
+        <button
+          onClick={() => setProfileOpen(true)}
+          className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer transition-colors w-full text-left"
+        >
+          <Avatar className="w-8 h-8 shrink-0">
+            <AvatarFallback className="text-xs bg-gradient-to-br from-thrive-purple to-thrive-blue text-white font-semibold">
               {initials}
             </AvatarFallback>
           </Avatar>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-gray-900 truncate">{user.name || 'User'}</p>
-            <p className="text-xs text-gray-500 truncate">Free Plan</p>
+            <p className="text-sm font-semibold text-gray-900 truncate">{displayName}</p>
+            <p className="text-xs text-gray-500 truncate">
+              {isSignedIn ? authUser?.email : 'Sign in to save →'}
+            </p>
           </div>
-          <Settings className="w-4 h-4 text-gray-400" />
-        </div>
+          <Settings className="w-4 h-4 text-gray-400 shrink-0" />
+        </button>
       </div>
+
+      <ProfilePanel open={profileOpen} onClose={() => setProfileOpen(false)} />
     </aside>
   )
 }
