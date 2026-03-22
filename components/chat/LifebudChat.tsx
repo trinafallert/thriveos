@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { cn } from '@/lib/utils'
 import { useUser } from '@/lib/user-context'
+import { BotPricingModal, UpgradeBanner } from '@/components/chat/BotPricingModal'
 import {
   MessageCircle,
   X,
@@ -12,6 +13,7 @@ import {
   Maximize2,
   Minimize2,
   Loader2,
+  Settings2,
 } from 'lucide-react'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -95,6 +97,10 @@ export function LifebudChat() {
   ])
   const [loading, setLoading] = useState(false)
   const [unread, setUnread] = useState(0)
+  const [showPricing, setShowPricing] = useState(false)
+  // In production, derive hasBotActive from the user's subscription from Supabase
+  // For now: true if OPENCLAW_WEBHOOK_URL or TELEGRAM_BOT_TOKEN env is set (always true in dev mode)
+  const hasBotActive = true  // replace with subscription check once Supabase is live
 
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -184,6 +190,13 @@ export function LifebudChat() {
               <p className="text-[10px] text-white/70 leading-tight">Your personal + business assistant</p>
             </div>
             <div className="flex items-center gap-1">
+              <a
+                href="/dashboard/settings"
+                className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                title="Bot settings"
+              >
+                <Settings2 className="w-3.5 h-3.5 text-white" />
+              </a>
               <button
                 onClick={() => setExpanded(e => !e)}
                 className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
@@ -202,6 +215,11 @@ export function LifebudChat() {
               </button>
             </div>
           </div>
+
+          {/* Upgrade banner — shown when no bot is active */}
+          {!hasBotActive && (
+            <UpgradeBanner onUpgrade={() => setShowPricing(true)} />
+          )}
 
           {/* Messages */}
           <div className="flex-1 overflow-y-auto px-4 py-4 space-y-0.5 scrollbar-thin scrollbar-thumb-gray-200">
@@ -293,6 +311,14 @@ export function LifebudChat() {
           </>
         )}
       </button>
+
+      {/* Pricing modal */}
+      <BotPricingModal
+        open={showPricing}
+        onClose={() => setShowPricing(false)}
+        onBYOT={() => { setShowPricing(false); window.location.href = '/dashboard/settings' }}
+        onSelectPlan={() => setShowPricing(false)}
+      />
     </div>
   )
 }

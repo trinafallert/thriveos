@@ -255,6 +255,12 @@ export function Sidebar() {
           </div>
           <Settings className="w-4 h-4 text-gray-400 shrink-0" />
         </button>
+        <Link href="/dashboard/settings">
+          <div className="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-gray-100 transition-colors mt-1 text-gray-500 text-xs font-medium">
+            <Settings className="w-3.5 h-3.5" />
+            Settings & AI Bot
+          </div>
+        </Link>
       </div>
 
       <ProfilePanel open={profileOpen} onClose={() => setProfileOpen(false)} />
