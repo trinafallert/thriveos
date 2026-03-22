@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/lib/user-context'
-import { Sparkles, ArrowRight, ChevronRight, Check, X } from 'lucide-react'
+import { Sparkles, ArrowRight, ChevronRight, Check, X, Tag, Download, Infinity } from 'lucide-react'
 
-const TOTAL_STEPS = 8
+const TOTAL_STEPS = 9
 
 // Chip component
 function Chip({
@@ -98,6 +98,24 @@ export default function OnboardingPage() {
   const [loading, setLoading] = useState(false)
   const [loadingDone, setLoadingDone] = useState(false)
   const [localData, setLocalData] = useState({ ...user })
+  // Pricing step state
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null)
+  const [promoCode, setPromoCode] = useState('')
+  const [promoOpen, setPromoOpen] = useState(false)
+  const [promoApplied, setPromoApplied] = useState(false)
+  const [promoError, setPromoError] = useState('')
+
+  const applyPromo = () => {
+    const code = promoCode.trim().toUpperCase()
+    if (code === 'FRIENDS') {
+      setPromoApplied(true)
+      setPromoError('')
+      setSelectedPlan('friends_unlimited')
+    } else {
+      setPromoError('Invalid code. Try FRIENDS for 2 weeks free!')
+      setPromoApplied(false)
+    }
+  }
 
   useEffect(() => {
     if (user.onboardingComplete) {
@@ -555,8 +573,232 @@ export default function OnboardingPage() {
     </div>
   )
 
-  // ─── STEP 7: Loading / Reward ─────────────────────────────────────────────
-  const Step7 = () => (
+  // ─── STEP 7: Pricing ──────────────────────────────────────────────────────
+  const Step7 = () => {
+    const plans = [
+      {
+        id: 'free',
+        name: 'Free',
+        price: '$0',
+        priceNote: 'forever',
+        emoji: '🆓',
+        tagline: 'Explore the full platform',
+        highlight: false,
+        gradient: 'from-gray-400 to-gray-500',
+        border: 'border-gray-200',
+        bg: 'bg-gray-50',
+        features: [
+          'Full dashboard — Lifebud, Bizbox, goals, habits',
+          'Life Match profile & questionnaire',
+          'Basic AI chat (demo responses)',
+          'Free download of the desktop app',
+          'No credit card needed',
+        ],
+        cta: 'Start Free',
+        ctaStyle: 'bg-gray-800 hover:bg-gray-700 text-white',
+      },
+      {
+        id: 'starter',
+        name: 'Starter',
+        price: '$49',
+        priceNote: '/month',
+        emoji: '🌱',
+        tagline: 'Get your AI bot active',
+        highlight: false,
+        gradient: 'from-teal-400 to-blue-500',
+        border: 'border-teal-200',
+        bg: 'bg-teal-50/30',
+        features: [
+          '500 AI messages / month',
+          'Your own Lifebud AI bot',
+          'Telegram bot link included',
+          'Goals, habits & biz coaching',
+          'Works on web + desktop',
+        ],
+        cta: 'Get Starter',
+        ctaStyle: 'bg-gradient-to-r from-teal-400 to-blue-500 hover:opacity-90 text-white',
+      },
+      {
+        id: 'growth',
+        name: 'Growth',
+        price: '$79',
+        priceNote: '/month',
+        emoji: '🚀',
+        tagline: 'For serious builders',
+        highlight: true,
+        gradient: 'from-thrive-pink via-violet-500 to-thrive-blue',
+        border: 'border-violet-400',
+        bg: 'bg-violet-50/40',
+        features: [
+          '2,000 AI messages / month',
+          'Dedicated Lifebud AI bot',
+          'Telegram bot link included',
+          'Priority response speed',
+          'Full context — life + business',
+          'Works on web + desktop',
+        ],
+        cta: 'Get Growth',
+        ctaStyle: 'bg-gradient-to-r from-thrive-pink via-violet-500 to-thrive-blue hover:opacity-90 text-white',
+      },
+      {
+        id: 'unlimited',
+        name: 'Unlimited',
+        price: '$149',
+        priceNote: '/month',
+        emoji: '♾️',
+        tagline: 'No limits, full power',
+        highlight: false,
+        gradient: 'from-thrive-gold via-thrive-pink to-violet-600',
+        border: 'border-yellow-300',
+        bg: 'bg-yellow-50/30',
+        features: [
+          'Unlimited AI messages',
+          'Dedicated bot, fastest speed',
+          'Telegram bot link included',
+          'Early access to new features',
+          'Works on web + desktop',
+        ],
+        cta: 'Go Unlimited',
+        ctaStyle: 'bg-gradient-to-r from-thrive-gold via-thrive-pink to-violet-600 hover:opacity-90 text-white',
+      },
+    ]
+
+    return (
+      <div className="space-y-5 animate-fade-in">
+        <div className="text-center space-y-2">
+          <span className="text-xs font-semibold text-thrive-purple uppercase tracking-widest">Almost there!</span>
+          <h2 className="text-2xl font-bold text-gray-900">Choose your plan ✨</h2>
+          <p className="text-sm text-gray-500 max-w-sm mx-auto">
+            Start free and explore — or activate your Lifebud AI bot now and hit the ground running.
+          </p>
+        </div>
+
+        {/* Promo applied banner */}
+        {promoApplied && (
+          <div className="flex items-center gap-3 p-3.5 bg-green-50 border border-green-200 rounded-2xl">
+            <span className="text-xl">🎉</span>
+            <div>
+              <p className="text-sm font-bold text-green-800">FRIENDS code applied!</p>
+              <p className="text-xs text-green-700">2 weeks of Unlimited — free. Then just $39/mo forever.</p>
+            </div>
+          </div>
+        )}
+
+        {/* Plan cards */}
+        <div className="grid grid-cols-2 gap-3">
+          {plans.map(plan => {
+            const isSelected = selectedPlan === plan.id || (promoApplied && plan.id === 'unlimited')
+            return (
+              <button
+                key={plan.id}
+                onClick={() => { if (!promoApplied) setSelectedPlan(plan.id) }}
+                className={`relative text-left p-4 rounded-2xl border-2 transition-all duration-200 ${
+                  isSelected
+                    ? `${plan.border} ${plan.bg} shadow-md ring-2 ring-violet-400/30`
+                    : `border-gray-100 bg-white hover:border-gray-300 hover:shadow-sm`
+                }`}
+              >
+                {plan.highlight && !promoApplied && (
+                  <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-thrive-pink to-violet-500 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full whitespace-nowrap shadow-sm">
+                    Most Popular
+                  </div>
+                )}
+                {isSelected && (
+                  <div className="absolute top-2.5 right-2.5 w-5 h-5 rounded-full bg-violet-500 flex items-center justify-center">
+                    <Check className="w-3 h-3 text-white" />
+                  </div>
+                )}
+                <div className="text-xl mb-1.5">{plan.emoji}</div>
+                <div className="flex items-baseline gap-1 mb-0.5">
+                  <span className="text-lg font-extrabold text-gray-900">
+                    {promoApplied && plan.id === 'unlimited' ? 'FREE' : plan.price}
+                  </span>
+                  {!(promoApplied && plan.id === 'unlimited') && (
+                    <span className="text-xs text-gray-400">{plan.priceNote}</span>
+                  )}
+                </div>
+                <p className="text-sm font-bold text-gray-800">{plan.name}</p>
+                <p className="text-[11px] text-gray-500 mb-2.5 leading-snug">{plan.tagline}</p>
+                <ul className="space-y-1.5">
+                  {plan.features.map(f => (
+                    <li key={f} className="flex items-start gap-1.5 text-[11px] text-gray-600">
+                      <Check className="w-3 h-3 text-violet-400 shrink-0 mt-0.5" />
+                      {f === 'Unlimited AI messages' && promoApplied
+                        ? <span><strong>2 weeks free</strong>, then $39/mo</span>
+                        : f}
+                    </li>
+                  ))}
+                </ul>
+                {plan.id === 'free' && (
+                  <div className="mt-3 flex items-center gap-1.5 text-[11px] text-blue-600 font-medium">
+                    <Download className="w-3 h-3" />
+                    Includes free desktop app download
+                  </div>
+                )}
+              </button>
+            )
+          })}
+        </div>
+
+        {/* Promo code — small & subtle */}
+        <div className="text-center">
+          {!promoOpen ? (
+            <button
+              onClick={() => setPromoOpen(true)}
+              className="text-xs text-gray-400 hover:text-gray-600 transition-colors flex items-center gap-1.5 mx-auto"
+            >
+              <Tag className="w-3 h-3" />
+              Have a promo code?
+            </button>
+          ) : (
+            <div className="flex items-center gap-2 max-w-xs mx-auto">
+              <input
+                type="text"
+                value={promoCode}
+                onChange={e => { setPromoCode(e.target.value); setPromoError('') }}
+                onKeyDown={e => e.key === 'Enter' && applyPromo()}
+                placeholder="Enter code..."
+                className="flex-1 px-3 py-2 rounded-xl border border-gray-200 text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-400 uppercase"
+                autoFocus
+              />
+              <button
+                onClick={applyPromo}
+                className="px-3 py-2 bg-violet-500 text-white text-xs font-semibold rounded-xl hover:bg-violet-600 transition-colors"
+              >
+                Apply
+              </button>
+            </div>
+          )}
+          {promoError && (
+            <p className="text-xs text-red-500 mt-1.5">{promoError}</p>
+          )}
+        </div>
+
+        {/* CTA for selected plan */}
+        {selectedPlan && (
+          <button
+            onClick={() => setStep(s => s + 1)}
+            className={`w-full py-3.5 rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 shadow-md transition-all ${
+              plans.find(p => p.id === selectedPlan)?.ctaStyle ??
+              'bg-gradient-to-r from-thrive-pink to-violet-500 text-white hover:opacity-90'
+            }`}
+          >
+            {promoApplied
+              ? <><span className="text-base">🎉</span> Claim 2 Weeks Free Unlimited</>
+              : <>{plans.find(p => p.id === selectedPlan)?.cta ?? 'Continue'} <ChevronRight className="w-4 h-4" /></>
+            }
+          </button>
+        )}
+
+        <p className="text-center text-[11px] text-gray-400">
+          No credit card required for free plan · Cancel anytime · Secure payment via Stripe
+        </p>
+      </div>
+    )
+  }
+
+  // ─── STEP 8: Loading / Reward ─────────────────────────────────────────────
+  const Step8 = () => (
     <div className="space-y-8 animate-fade-in text-center">
       {!loadingDone ? (
         <>
@@ -634,14 +876,15 @@ export default function OnboardingPage() {
     { component: <Step4 />, label: 'Work Style', canSkip: true, isLast: false },
     { component: <Step5 />, label: 'AI', canSkip: true, isLast: false },
     { component: <Step6 />, label: 'Connect', canSkip: true, isLast: false },
-    { component: <Step7 />, label: 'Loading', canSkip: false, isLast: true },
+    { component: <Step7 />, label: 'Plan', canSkip: false, isLast: false },
+    { component: <Step8 />, label: 'Loading', canSkip: false, isLast: true },
   ]
 
   const currentStep = steps[step]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-thrive-purple-soft flex items-center justify-center p-4">
-      <div className="w-full max-w-xl">
+      <div className={`w-full ${step === 7 ? 'max-w-2xl' : 'max-w-xl'}`}>
         {/* Header */}
         {step > 0 && step < TOTAL_STEPS - 1 && (
           <div className="mb-6 space-y-3">
@@ -653,7 +896,7 @@ export default function OnboardingPage() {
             </div>
             <ProgressBar step={step} total={TOTAL_STEPS - 2} />
             <div className="flex gap-1">
-              {['Vision', 'Reality', 'Goals', 'Work Style', 'AI', 'Connect'].map((label, i) => (
+              {['Vision', 'Reality', 'Goals', 'Work Style', 'AI', 'Connect', 'Plan'].map((label, i) => (
                 <div
                   key={label}
                   className={`flex-1 h-1 rounded-full transition-all ${
@@ -669,8 +912,8 @@ export default function OnboardingPage() {
         <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
           {currentStep.component}
 
-          {/* Navigation (except step 0 which has its own CTA, and step 7 loading) */}
-          {step > 0 && step < TOTAL_STEPS - 1 && (
+          {/* Navigation (except step 0 which has its own CTA, step 7 pricing has its own CTA, and step 8 loading) */}
+          {step > 0 && step < TOTAL_STEPS - 1 && step !== 7 && (
             <div className="mt-8 flex items-center gap-3">
               {currentStep.canSkip && (
                 <button
