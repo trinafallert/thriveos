@@ -1,5 +1,6 @@
 import { Sidebar } from '@/components/layout/sidebar'
 import { DashboardGuard } from '@/components/layout/dashboard-guard'
+import { LifebudChat } from '@/components/chat/LifebudChat'
 
 export default function DashboardLayout({
   children,
@@ -14,6 +15,8 @@ export default function DashboardLayout({
           {children}
         </div>
       </div>
+      {/* Lifebud AI chat — floats bottom-right on every dashboard page */}
+      <LifebudChat />
     </DashboardGuard>
   )
 }
