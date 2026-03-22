@@ -26,6 +26,7 @@ import {
   BookOpen,
   Dumbbell,
   Plus,
+  Users,
 } from 'lucide-react'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
@@ -36,6 +37,7 @@ const lifebudChildren = [
   { title: 'Mood', href: '/dashboard/lifebud/mood', icon: Smile },
   { title: 'Journal', href: '/dashboard/lifebud/journal', icon: BookOpen },
   { title: 'Fitness', href: '/dashboard/lifebud/fitness', icon: Dumbbell },
+  { title: 'Life Match ✨', href: '/dashboard/lifebud/life-match', icon: Users },
 ]
 
 export function Sidebar() {

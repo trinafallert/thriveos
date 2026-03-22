@@ -13,6 +13,7 @@ import {
   Dumbbell,
   ArrowUpRight,
   Flame,
+  Users,
 } from 'lucide-react'
 import Link from 'next/link'
 import { useUser } from '@/lib/user-context'
@@ -23,6 +24,7 @@ const sections = [
   { label: 'Mood', href: '/dashboard/lifebud/mood', icon: Smile, desc: 'Check in with yourself', color: 'text-thrive-teal', bg: 'bg-thrive-teal-light' },
   { label: 'Journal', href: '/dashboard/lifebud/journal', icon: BookOpen, desc: 'Reflect & grow', color: 'text-thrive-blue', bg: 'bg-thrive-blue-soft' },
   { label: 'Fitness', href: '/dashboard/lifebud/fitness', icon: Dumbbell, desc: 'Move your body', color: 'text-thrive-gold', bg: 'bg-thrive-gold-light' },
+  { label: 'Life Match ✨', href: '/dashboard/lifebud/life-match', icon: Users, desc: 'AI-matched connections', color: 'text-thrive-purple', bg: 'bg-gradient-to-br from-thrive-pink-soft to-thrive-purple-soft' },
 ]
 
 const habits = [
