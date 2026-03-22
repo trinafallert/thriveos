@@ -579,8 +579,8 @@ export default function OnboardingPage() {
       {
         id: 'free',
         name: 'Free',
-        price: '$0',
-        priceNote: 'forever',
+        price: 'Free',
+        priceNote: 'no card needed',
         emoji: '🆓',
         tagline: 'Explore the full platform',
         highlight: false,
