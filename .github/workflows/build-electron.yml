@@ -35,14 +35,13 @@ jobs:
       - name: Build macOS DMG
         working-directory: electron
         run: |
-          npx electron-builder --mac --x64 --publish never 2>&1 | tee /tmp/eb-build.log
+          ./node_modules/.bin/electron-builder --mac --x64 --publish never 2>&1 | tee /tmp/eb-build.log
           BUILD_EXIT=${PIPESTATUS[0]}
-          echo "=== electron-builder output ==="
-          cat /tmp/eb-build.log
-          echo "=== dist directory ==="
-          ls -la dist/ 2>/dev/null || echo "(no dist dir)"
-          echo "=== all dmg files ==="
-          find . -name "*.dmg" 2>/dev/null || echo "(none found)"
+          # Emit last 50 lines as GitHub annotations so we can see them via API
+          tail -50 /tmp/eb-build.log | while IFS= read -r line; do
+            echo "::notice::$line"
+          done
+          ls -la dist/ 2>/dev/null && find dist -name "*.dmg" || echo "::error::No dist/ directory found"
           exit $BUILD_EXIT
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: false
