@@ -26,6 +26,12 @@ jobs:
         working-directory: electron
         run: npm install
 
+      - name: Generate app icon from SVG
+        run: |
+          mkdir -p electron/build/icons
+          brew install librsvg
+          rsvg-convert -w 512 -h 512 electron/src/logo.svg -o electron/build/icons/icon.png
+
       - name: Build macOS DMG
         working-directory: electron
         run: npm run build:mac
