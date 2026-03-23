@@ -23,11 +23,11 @@
     ],
     "mac": {
       "target": [
-        { "target": "dmg", "arch": ["x64", "arm64"] }
+        { "target": "dir", "arch": ["x64"] }
       ],
       "icon": "build/icons/icon.png",
       "category": "public.app-category.productivity",
-      "artifactName": "ThriveOS.dmg"
+      "identity": null
     },
     "win": {
       "target": [

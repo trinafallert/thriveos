@@ -32,25 +32,26 @@ jobs:
           brew install librsvg
           rsvg-convert -w 512 -h 512 electron/src/logo.svg -o electron/build/icons/icon.png
 
-      - name: Build macOS DMG
+      - name: Build macOS app bundle
         working-directory: electron
-        run: |
-          ./node_modules/.bin/electron-builder --mac --x64 --publish never 2>&1 | tee /tmp/eb-build.log
-          BUILD_EXIT=${PIPESTATUS[0]}
-          # Write full log to step summary
-          echo '## electron-builder log' >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
-          cat /tmp/eb-build.log >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
-          # Dist contents
-          echo '## dist/' >> $GITHUB_STEP_SUMMARY
-          ls -laR dist/ 2>/dev/null >> $GITHUB_STEP_SUMMARY || echo '(no dist/)' >> $GITHUB_STEP_SUMMARY
-          exit $BUILD_EXIT
+        run: ./node_modules/.bin/electron-builder --mac --x64 --publish never
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: false
           CSC_LINK: ""
-          CSC_KEY_PASSWORD: ""
-          ELECTRON_BUILDER_SKIP_NOTARIZATION: true
+
+      - name: Create DMG from app bundle
+        run: |
+          APP_PATH=$(find electron/dist -name "*.app" | head -1)
+          echo "App path: $APP_PATH"
+          mkdir -p /tmp/dmg-src
+          cp -r "$APP_PATH" /tmp/dmg-src/
+          hdiutil create \
+            -volname "ThriveOS" \
+            -srcfolder /tmp/dmg-src \
+            -ov -format UDZO \
+            -o electron/dist/ThriveOS.dmg
+          echo "DMG created:"
+          ls -lh electron/dist/ThriveOS.dmg
 
       - name: Upload build log
         if: always()
