@@ -34,9 +34,10 @@ jobs:
 
       - name: Build macOS DMG
         working-directory: electron
-        run: npm run build:mac
+        run: npx electron-builder --mac --x64 --publish never
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: false
+          DEBUG: electron-builder
 
       - name: Upload DMG artifact
         uses: actions/upload-artifact@v4
