@@ -23,7 +23,7 @@
     ],
     "mac": {
       "target": [
-        { "target": "dir", "arch": ["x64"] }
+        { "target": "dir", "arch": ["x64", "arm64"] }
       ],
       "icon": "build/icons/icon.png",
       "category": "public.app-category.productivity",
