@@ -2,9 +2,12 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import { ProfilePanel } from '@/components/layout/profile-panel'
+import { useAuth } from '@/lib/auth-context'
 import { cn } from '@/lib/utils'
 import { useUser } from '@/lib/user-context'
+import { useBusinesses, BUSINESS_GRADIENTS } from '@/lib/businesses-context'
 import {
   LayoutDashboard,
   Briefcase,
@@ -22,17 +25,11 @@ import {
   Smile,
   BookOpen,
   Dumbbell,
+  Plus,
+  Users,
 } from 'lucide-react'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
-
-const bizboxChildren = [
-  { title: 'Tasks', href: '/dashboard/bizbox/tasks', icon: CheckSquare },
-  { title: 'Revenue', href: '/dashboard/bizbox/revenue', icon: TrendingUp },
-  { title: 'Projects', href: '/dashboard/bizbox/projects', icon: Target },
-  { title: 'Calendar', href: '/dashboard/bizbox/calendar', icon: Calendar },
-  { title: 'Analytics', href: '/dashboard/bizbox/analytics', icon: BarChart3 },
-]
 
 const lifebudChildren = [
   { title: 'Habits', href: '/dashboard/lifebud/habits', icon: Zap },
@@ -40,18 +37,27 @@ const lifebudChildren = [
   { title: 'Mood', href: '/dashboard/lifebud/mood', icon: Smile },
   { title: 'Journal', href: '/dashboard/lifebud/journal', icon: BookOpen },
   { title: 'Fitness', href: '/dashboard/lifebud/fitness', icon: Dumbbell },
+  { title: 'Life Match ✨', href: '/dashboard/lifebud/life-match', icon: Users },
 ]
 
 export function Sidebar() {
   const pathname = usePathname()
   const router = useRouter()
   const { user } = useUser()
+  const { businesses } = useBusinesses()
 
   const isBizboxActive = pathname.startsWith('/dashboard/bizbox')
   const isLifebudActive = pathname.startsWith('/dashboard/lifebud')
 
+  const { user: authUser } = useAuth()
   const [bizboxOpen, setBizboxOpen] = useState(isBizboxActive)
   const [lifebudOpen, setLifebudOpen] = useState(isLifebudActive)
+  const [profileOpen, setProfileOpen] = useState(false)
+
+  const sortedBusinesses = [...businesses].sort((a, b) => a.order - b.order)
+
+  const displayName = authUser?.user_metadata?.name || user.name || 'User'
+  const isSignedIn = Boolean(authUser)
 
   const initials = user.name
     ? user.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
@@ -134,25 +140,45 @@ export function Sidebar() {
 
           {bizboxOpen && (
             <div className="ml-4 pl-3 border-l border-gray-100 space-y-0.5">
-              {bizboxChildren.map((child) => {
-                const isActive = pathname === child.href
-                return (
-                  <Link
-                    key={child.href}
-                    href={child.href}
-                    className={cn(
-                      'flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all duration-150',
-                      isActive
-                        ? 'bg-thrive-purple-soft text-thrive-purple font-medium'
-                        : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800'
-                    )}
-                  >
-                    <child.icon className={cn('w-3.5 h-3.5', isActive ? 'text-thrive-purple' : 'text-gray-400')} />
-                    {child.title}
-                    {isActive && <ChevronRight className="w-3 h-3 ml-auto text-thrive-purple" />}
-                  </Link>
-                )
-              })}
+              {sortedBusinesses.length === 0 ? (
+                <Link
+                  href="/dashboard/bizbox"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-colors"
+                >
+                  <Plus className="w-3 h-3" />
+                  Add a business
+                </Link>
+              ) : (
+                sortedBusinesses.map(biz => {
+                  const bizHref = `/dashboard/bizbox/${biz.id}`
+                  const isActive = pathname === bizHref || pathname.startsWith(`${bizHref}/`)
+                  return (
+                    <Link
+                      key={biz.id}
+                      href={bizHref}
+                      className={cn(
+                        'flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all duration-150',
+                        isActive
+                          ? 'bg-thrive-purple-soft text-thrive-purple font-medium'
+                          : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800'
+                      )}
+                    >
+                      <span className="text-base leading-none">{biz.emoji}</span>
+                      <span className="flex-1 truncate">{biz.name}</span>
+                      {isActive && <ChevronRight className="w-3 h-3 ml-auto text-thrive-purple shrink-0" />}
+                    </Link>
+                  )
+                })
+              )}
+              {sortedBusinesses.length > 0 && (
+                <Link
+                  href="/dashboard/bizbox"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs text-gray-400 hover:text-violet-600 hover:bg-gray-50 transition-colors"
+                >
+                  <Plus className="w-3 h-3" />
+                  Add business
+                </Link>
+              )}
             </div>
           )}
         </div>
@@ -212,19 +238,32 @@ export function Sidebar() {
 
       {/* User Profile */}
       <div className="p-4 border-t border-gray-100">
-        <div className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer transition-colors">
-          <Avatar className="w-8 h-8">
-            <AvatarFallback className="text-xs bg-gradient-to-br from-thrive-purple to-thrive-blue text-white">
+        <button
+          onClick={() => setProfileOpen(true)}
+          className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer transition-colors w-full text-left"
+        >
+          <Avatar className="w-8 h-8 shrink-0">
+            <AvatarFallback className="text-xs bg-gradient-to-br from-thrive-purple to-thrive-blue text-white font-semibold">
               {initials}
             </AvatarFallback>
           </Avatar>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-gray-900 truncate">{user.name || 'User'}</p>
-            <p className="text-xs text-gray-500 truncate">Free Plan</p>
+            <p className="text-sm font-semibold text-gray-900 truncate">{displayName}</p>
+            <p className="text-xs text-gray-500 truncate">
+              {isSignedIn ? authUser?.email : 'Sign in to save →'}
+            </p>
           </div>
-          <Settings className="w-4 h-4 text-gray-400" />
-        </div>
+          <Settings className="w-4 h-4 text-gray-400 shrink-0" />
+        </button>
+        <Link href="/dashboard/settings">
+          <div className="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-gray-100 transition-colors mt-1 text-gray-500 text-xs font-medium">
+            <Settings className="w-3.5 h-3.5" />
+            Settings & AI Bot
+          </div>
+        </Link>
       </div>
+
+      <ProfilePanel open={profileOpen} onClose={() => setProfileOpen(false)} />
     </aside>
   )
 }
